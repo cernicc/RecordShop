@@ -25,6 +25,17 @@ img{max-width:100%;}
 body{
 	background: url(../images/body-bg.png) repeat-x, url(../images/bg.png) #F8F8F8;
 }
+
+h3 {
+	display: block;
+	padding: 30px 0px 12px 0px;
+	font: bold 18px/16px "Arial";
+	color: #000;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
 .wrap{
 	width:80%;
 	margin:0 auto;

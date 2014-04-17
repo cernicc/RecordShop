@@ -104,7 +104,7 @@
 			</div>
 			<!---end-top-header--->
 			<!---End-header--->
-			</div><br />
+			</div>
 				<div class="content">
 					<div class="products-box">
 					<div class="products">

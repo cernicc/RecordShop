@@ -7,25 +7,14 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/responsiveslides.css">
-        
-
-
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 		<script src="js/responsiveslides.min.js"></script>
 		  <script>
-		    // You can also use "$(window).load(function() {"
-			    $(function () {
-			      // Slideshow 1
-			      $("#slider1").responsiveSlides({
-			        maxwidth: 1600,
-			        speed: 600
-			      });
-			});
 				$(document).ready(function() {
 				$('a.login-window').click(function() {
 					
-							//Getting the variable's value from a link 
+					//Getting the variable's value from a link 
 					var loginBox = $(this).attr('href');
 				
 					//Fade in the Popup
@@ -58,13 +47,6 @@
 		  </script>
 	</head>
 	<body>
-    
-    
-
-    
-    
-    
-    
 		<!---start-wrap--->
 		<div class="wrap">
 			<!---start-header--->
@@ -120,22 +102,9 @@
 				</form>
 			</div>
 
-                
 			<!---end-top-header--->
 			<!---End-header--->
 			</div>
-			
-				<!--start-image-slider---->
-					<div class="image-slider">
-						<!-- Slideshow 1 -->
-					    <ul class="rslides" id="slider1">
-					      <li><img src="images/slider1.jpg" alt=""></li>
-					      <li><img src="images/slider3.jpg" alt=""></li>
-					      <li><img src="images/slider1.jpg" alt=""></li>
-					    </ul>
-						 <!-- Slideshow 2 -->
-					</div>
-					<!--End-image-slider---->
 				<div class="content">
 					<div class="products-box">
 					<div class="products">
@@ -243,7 +212,7 @@
 					<ul>
 						<li><a href="registriraj.php">Registracija</a></li>
 						<li><a href="vasprofil.php">Vaš profil</a></li>
-						<li><a href="urediprofil.php">Uredi profil</a></li>						
+						<li><a href="urediProfil.php">Uredi profil</a></li>						
 					</ul>
 				</div>
 				<div class="col_1_of_4 span_1_of_4 footer-lastgrid">
