@@ -1,4 +1,6 @@
 <!DOCTYPE HTML>
+
+
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,43 +12,12 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 		<script src="js/responsiveslides.min.js"></script>
-		  <script>
-				$(document).ready(function() {
-				$('a.login-window').click(function() {
-					
-					//Getting the variable's value from a link 
-					var loginBox = $(this).attr('href');
-				
-					//Fade in the Popup
-					$(loginBox).fadeIn(300);
-					
-					//Set the center alignment padding + border see css style
-					var popMargTop = ($(loginBox).height() + 24) / 2; 
-					var popMargLeft = ($(loginBox).width() + 24) / 2; 
-					
-					$(loginBox).css({ 
-						'margin-top' : -popMargTop,
-						'margin-left' : -popMargLeft
-					});
-					
-					// Add the mask to body
-					$('body').append('<div id="mask"></div>');
-					$('#mask').fadeIn(300);
-					
-					return false;
-				});
-				
-				// When clicking on the button close or the mask layer the popup closed
-				$('a.close, #mask').live('click', function() { 
-				  $('#mask , .login-popup').fadeOut(300 , function() {
-					$('#mask').remove();  
-				}); 
-				return false;
-				});
-				});
-		  </script>
 	</head>
 	<body>
+
+        <?php
+            include "poveziZBazo.php";
+        ?>
 		<!---start-wrap--->
 		<div class="wrap">
 			<!---start-header--->
@@ -60,13 +31,113 @@
 						<input type="text"><input type="submit"  value="Išči" />
 					</form>
 				</div>
-				<div class="sub-header-right">
-					<ul>
-						<li><a href="#login-box" class="login-window">Prijava</a></li>
-						<li><a href="#">Profil</a></li>
-						<li><a href="#">Košarica: (Prazno) <img src="images/cart.png" title="cart" /></a></li>
-					</ul>
-				</div>
+
+                <?php
+
+				    include 'header.php';
+
+                /*
+                // preverimo, če je uporabnik že prijavljen, če teče seja...
+                if (isset($_SESSION['username'])){
+                    header("location:index.php");
+                    die();
+                }
+
+
+                else{
+
+                    $username = "";
+                    $match = true;
+
+
+                    if (isset($_POST['login'])){
+                        $username = $_POST['username'];
+                        //echo "$username";
+                        $dbname = 'recordshop';
+                        $dbuser     = 'root';
+                        $dbpass     = '';
+                        $dbhost     = 'localhost'; // localhost should suffice
+                        // povežemo se v bazo
+                        $conn = mysql_connect($dbhost, $dbuser, $dbpass) or exit(mysql_error());
+                        // preverimo ali uporabnik obstaja
+
+                        mysql_select_db($dbname, $conn) or exit(mysql_error());
+
+                        if (!$conn) {
+                            echo "Unable to connect to DB: " . mysql_error();
+                            exit;
+                        }
+
+                        if (!mysql_select_db($dbname)) {
+                            echo "Unable to select mydbname: " . mysql_error();
+                            exit;
+                        }
+
+                        $sqlSelect = "SELECT * FROM uporabnik WHERE uporabnisko_ime = '$username'";
+                        $query = mysql_query($sqlSelect);
+
+                        if (!$query) {
+                            echo "Could not successfully run query ($query) from DB: " . mysql_error();
+                            exit;
+                        }
+
+                        // uporabnik ne obstaja
+                        if (mysql_num_rows($query) == 0)
+                            $match = false;
+                        else{
+                            $password = $_POST['password'];
+                            $password = hash("sha512", $password);
+
+                            // preveri uporabnikove podatke
+                            $user = mysql_fetch_array($query);
+                                if ($password == $user['geslo']){
+                                    // set session
+                                    $_SESSION['username'] = $username;
+                                    // isAdmin?
+                                    $isAdmin = $user['je_admin'];
+                                    $_SESSION['isAdmin'] = $isAdmin;
+                                    echo "UPORABNIK VPISAN";
+                                    // redirect to index
+                                    header("location:index.php");
+
+                                    die();
+                                }
+                                // don't match
+                                else{
+                                    $match = false;
+                                }
+
+                            }
+                        }
+
+                        if (!isset($_POST['login']) || !$match){
+                            echo "<div id='login-box' name='loginBox' action='index.php' mathod='POST' class='login-popup'>";
+                            echo "<a href='index.php' class='close'><img src='images/close_pop.png' class='btn_close' title='Close Window' alt='Close' /></a>";
+                            echo "<form method='post' class='signin' action='#'>";
+                                echo "<fieldset class='textbox'>";
+                                echo "<label class='username'>";
+                                    echo "<span>Uporabniško ime</span>";
+                                    echo "<input id='username' name='username' type='text' autocomplete='on' placeholder='Uporabniško ime'>";
+                                echo "</label>";
+                                echo "<label class='password'>";
+                                    echo "<span>Geslo</span>";
+                                    echo "<input id='password' name='password'  type='password' placeholder='Geslo'>";
+                                echo "</label>";
+                                // echo "<button class='submit button' type='button'>Vpiši me!</button>";
+                                echo "<input type='submit' value='Vpiši me!' name='login' id='btnLogin' class='submit button'>";
+                                echo "<p>";
+                                    echo "<a class='forgot' href='#'>Ste pozabili geslo?</a>";
+                                    echo "<br/>";
+                                    echo "<a class='forgot' href='registriraj.ph'>Še nimate našega računa?</a>";
+                                echo "</p>";
+                                echo "</fieldset>";
+                            echo "</form>";
+                        echo "</div>";
+                        }
+                    }
+                */
+                ?>
+
 				<div class="clear"> </div>
 			</div>
 			<div class="clear"> </div>
@@ -79,32 +150,27 @@
 					<div class="clear"> </div>
 				</ul>
 			</div>
-            
-            <div id="login-box" class="login-popup">
-				<a href="index.php" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-  				<form method="post" class="signin" action="#">
-					<fieldset class="textbox">
-					<label class="username">
-						<span>Uporabniško ime</span>
-						<input id="username" name="username" value="" type="text" autocomplete="on" placeholder="Uporabniško ime">
-					</label>
-					<label class="password">
-						<span>Geslo</span>
-						<input id="password" name="password" value="" type="password" placeholder="Geslo">
-					</label>
-					<button class="submit button" type="button">Vpiši me!</button>
-					<p>
-						<a class="forgot" href="#">Ste pozabili geslo?</a>
-						<br/>
-						<a clas="forgot" href="registriraj.php">Še nimate našega računa?</a>
-					</p>        
-					</fieldset>
-				</form>
-			</div>
 
+
+
+
+
+                
 			<!---end-top-header--->
 			<!---End-header--->
 			</div>
+			
+				<!--start-image-slider---->
+					<div class="image-slider">
+						<!-- Slideshow 1 -->
+					    <ul class="rslides" id="slider1">
+					      <li><img src="images/slider1.jpg" alt=""></li>
+					      <li><img src="images/slider3.jpg" alt=""></li>
+					      <li><img src="images/slider1.jpg" alt=""></li>
+					    </ul>
+						 <!-- Slideshow 2 -->
+					</div>
+					<!--End-image-slider---->
 				<div class="content">
 					<div class="products-box">
 					<div class="products">
@@ -207,14 +273,9 @@
 						<li><a href="najljubsi.php">Najljubši</a></li>
 					</ul>
 				</div>
-				<div class="col_1_of_4 span_1_of_4">
-					<h3>Profil</h3>
-					<ul>
-						<li><a href="registriraj.php">Registracija</a></li>
-						<li><a href="vasprofil.php">Vaš profil</a></li>
-						<li><a href="urediProfil.php">Uredi profil</a></li>						
-					</ul>
-				</div>
+				<?php
+                    include 'footer.php'
+                ?>
 				<div class="col_1_of_4 span_1_of_4 footer-lastgrid">
 					<h3>Povežite se z nami</h3>
 					<ul>

@@ -8,43 +8,12 @@
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-		  <script>
-				$(document).ready(function() {
-				$('a.login-window').click(function() {
-					
-							//Getting the variable's value from a link 
-					var loginBox = $(this).attr('href');
-				
-					//Fade in the Popup
-					$(loginBox).fadeIn(300);
-					
-					//Set the center alignment padding + border see css style
-					var popMargTop = ($(loginBox).height() + 24) / 2; 
-					var popMargLeft = ($(loginBox).width() + 24) / 2; 
-					
-					$(loginBox).css({ 
-						'margin-top' : -popMargTop,
-						'margin-left' : -popMargLeft
-					});
-					
-					// Add the mask to body
-					$('body').append('<div id="mask"></div>');
-					$('#mask').fadeIn(300);
-					
-					return false;
-				});
-				
-				// When clicking on the button close or the mask layer the popup closed
-				$('a.close, #mask').live('click', function() { 
-				  $('#mask , .login-popup').fadeOut(300 , function() {
-					$('#mask').remove();  
-				}); 
-				return false;
-				});
-				});
-		  </script>
+
 	</head>
 	<body>
+        <?php
+            include "poveziZBazo.php"
+        ?>
 		<!---start-wrap--->
 		<div class="wrap">
 			<!---start-header--->
@@ -57,14 +26,12 @@
 					<form>
 						<input type="text"><input type="submit"  value="Išči" />
 					</form>
+
+
 				</div>
-				<div class="sub-header-right">
-					<ul>
-						<li><a href="#login-box" class="login-window">Prijava</a></li>
-						<li><a href="#">Profil</a></li>
-						<li><a href="#">Košarica: (Prazno) <img src="images/cart.png" title="cart" /></a></li>
-					</ul>
-				</div>
+                <?php
+                    include "header.php";
+                ?>
 				<div class="clear"> </div>
 			</div>       
 			<div class="clear"> </div>
@@ -108,33 +75,117 @@
 						
 				<div class="col span_2_of_3">
 				  <div class="contact-form">
-				  	<h3>Registracija uporabnika</h3>
-					    <form>
-					    	<div>
-						    	<span><label>IME</label></span>
-						    	<span><input type="text" value=""></span>
-						    </div>
-                            <div>
-						    	<span><label>PRIIMEK</label></span>
-						    	<span><input type="text" value=""></span>
-						    </div>
-						    <div>
-						    	<span><label>UPORABNIŠKO IME</label></span>
-						    	<span><input type="text" value=""></span>
-						    </div>
-						    <div>
-						     	<span><label>GESLO</label></span>
-						    	<span><input type="password" value=""></span>
-						    </div>
-						    <div>
-						    	<span><label>EMAIL NASLOV</label></span>
-						    	<span><input type="email" value=""></span>
-						    </div>
-						   <div>
-						   		<span><input type="submit" value="Registriraj se"></span>
-                                <p1>Opomba: za uspešno registracijo morajo biti izpolnjena vsa navedena polja</p1>
-						  </div>
-					    </form>
+					<?php
+						 // if already logged in redirect to index
+						  if (isset($_SESSION['username']))
+						  {
+							header("location:index.php");
+							die();
+						  }
+						$userExists = false;
+						if (isset($_POST['register'])){
+														
+							$dbname = 'recordshop'; 
+							$dbuser     = 'root'; 
+							$dbpass     = ''; 
+							$dbhost     = 'localhost'; // localhost should suffice 
+							$conn = mysql_connect($dbhost, $dbuser, $dbpass) or exit(mysql_error()); 
+							mysql_select_db($dbname, $conn) or exit(mysql_error());
+
+							if (!$conn) {
+                                echo "Unable to connect to DB: " . mysql_error();
+                                exit;
+                            }
+
+                            if (!mysql_select_db($dbname)) {
+                                echo "Unable to select mydbname: " . mysql_error();
+                                exit;
+                            }
+							
+							$username = $_POST['username'];
+							$sql = "SELECT * FROM uporabnik WHERE uporabnisko_ime= '$username'";
+							$query = mysql_query($sql);
+
+							if (!$query) {
+								echo "Could not successfully run query ($sql) from DB: " . mysql_error();
+								exit;
+							}
+
+							if (mysql_num_rows($query) > 0) {
+								$userExists = true;								
+							}
+							
+							
+							/*
+							// connect to db
+							$dbConn = mysqli_connect("localhost");
+							$dbConn->select_db("recordshop.sql");
+							// čćšž
+									mysqli_query($dbConn, "SET NAMES 'utf8' COLLATE 'utf8_slovenian_ci';");
+									mysqli_query($dbConn, "SET CHARACTER SET 'utf8_slovenian_ci';");	
+							echo "DREK";
+							
+							$username = $_POST['username'];
+							$sqlSelect = "SELECT * FROM uporabnik WHERE uporabnisko_ime = '$username'";
+							$query = mysqli_query($dbConn, $sqlSelect);
+							if (mysqli_num_rows($query) > 0){
+								$userExists = true;
+							}
+							*/
+							else{ 
+								$username = $_POST['username'];
+								$email = $_POST['email'];
+								$password = $_POST['password'];
+								$password = hash('sha512', $password);
+								$name = $_POST['name'];
+								$surname = $_POST['surname'];		
+								$sqlInsert = "INSERT INTO uporabnik (uporabnisko_ime, geslo, ime, priimek, email)
+												VALUES ('$username', '$password', '$name', '$surname', '$email');";
+								// execute sqlInsert
+								$sqlSumniki = "SET NAMES 'utf8' COLLATE 'utf8_slovenian_ci';";
+								$sqlUTF = "SET CHARACTER SET 'utf8_slovenian_ci';";
+								mysql_query($sqlUTF);
+								mysql_query($sqlSumniki);
+								mysql_query($sqlInsert);
+								//mysqli_query($dbConn, $sqlInsert);
+								echo "Uporabnik $username uspešno registriran!";
+                                echo "</br>";
+                                echo "Čez par sekund boste preusmerjeni na stran za prijavo!";
+                                header("refresh:5; url=index.php");
+
+							}
+						}
+						if (!isset($_POST['register']) || $userExists){
+							echo "<h3>Registracija uporabnika</h3>";
+								echo "<form id='registerForm' name='registerForm' action='registriraj.php' method='POST'>";
+									echo "<div>";
+										echo "<span><label>IME</label></span>";
+										echo "<span><input type='text' name='name' id='txtName'><span>";
+									echo "</div>";
+									echo "<div>";
+										echo "<span><label>PRIIMEK</label></span>";
+										echo "<span><input type='text' name='surname' id='txtSurname'></span>";
+									echo "</div>";
+									echo "<div>";
+										echo "<span><label>UPORABNIŠKO IME</label></span>";
+										echo "<span><input type='text' name='username' id='txtUsername'></span>";
+									echo "</div>";
+									echo "<div>";
+										echo "<span><label>GESLO</label></span>";
+										echo "<span><input type='password' name='password' id='txtPassword'></span>";
+									echo "</div>";
+									echo "<div>";
+										echo "<span><label>EMAIL NASLOV</label></span>";
+										echo "<span><input type='email' name='email' id='txtEmail'></span>";
+									echo "</div>";
+								   echo "<div>";
+										echo "<input type='submit' value='Registriraj' name='register' id='btnRegister'>";
+									   echo "<p1>Opomba: za uspešno registracijo morajo biti izpolnjena vsa navedena polja</p1>";
+								   echo "</div>";
+								echo "</form>";
+
+						}			
+					?>
 				    </div>
   				</div>				
 			  </div>
@@ -160,14 +211,10 @@
 						<li><a href="najljubsi.php">Najljubši</a></li>
 					</ul>
 				</div>
-				<div class="col_1_of_4 span_1_of_4">
-					<h3>Profil</h3>
-					<ul>
-						<li><a href="registriraj.php">Registracija</a></li>
-						<li><a href="vasprofil.php">Vaš profil</a></li>
-						<li><a href="urediprofil.php">Uredi profil</a></li>						
-					</ul>
-				</div>
+
+                    <?php
+                    include 'footer.php'
+                    ?>
 				<div class="col_1_of_4 span_1_of_4 footer-lastgrid">
 					<h3>Povežite se z nami</h3>
 					<ul>
