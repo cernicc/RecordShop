@@ -25,17 +25,6 @@ img{max-width:100%;}
 body{
 	background: url(../images/body-bg.png) repeat-x, url(../images/bg.png) #F8F8F8;
 }
-
-h3 {
-	display: block;
-	padding: 30px 0px 12px 0px;
-	font: bold 18px/16px "Arial";
-	color: #000;
-	font-family: 'Open Sans', sans-serif;
-	font-weight: normal;
-	text-transform: uppercase;
-}
-
 .wrap{
 	width:80%;
 	margin:0 auto;
@@ -80,7 +69,7 @@ h3 {
 }
 .sub-header-center{
 	float: left;
-	width: 56%;
+	width: 54%;
 	text-align: center;
 	margin-top: 1.5em;
 }
@@ -1242,6 +1231,29 @@ form.signin input::-webkit-input-placeholder {
     text-shadow: 0 0 2px #000;
 }
 
+#btnLogin{
+    background: -moz-linear-gradient(center top, #f3f3f3, #dddddd);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#dddddd));
+    background: -o-linear-gradient(top, #f3f3f3, #dddddd);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3', EndColorStr='#dddddd');
+    border-color: #000;
+    border-width: 1px;
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    padding: 6px 6px 4px;
+    margin-top: 10px;
+    font: 12px;
+    width: 214px;
+
+}
+#btnLogin:hover{
+    background: #ddd;
+}
+/*
 .button {
     background: -moz-linear-gradient(center top, #f3f3f3, #dddddd);
     background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#dddddd));
@@ -1264,3 +1276,4 @@ form.signin input::-webkit-input-placeholder {
 .button:hover {
     background: #ddd;
 }
+*/
