@@ -16,109 +16,68 @@
         <div class="wrap"> <!---start-wrap--->
             <?php include "header.php";?>  <!-- Header -->
             <div class="content">
-                <div class="contact">
+                <div class="contact">             	
                     <div class="section group">
                         <div class="col span_2_of_3">
+                        	<h3>Prijava</h3> 
                             <div class="contact-form">
 								<?php
-                                // preverimo, če je uporabnik že prijavljen, če teče seja...
-                                if (isset($_SESSION['id'])){
+                                if (isset($_SESSION['id'])){ // Uporabnik že prijavljen
                                     header("location:index.php");
-                                    echo "UPORABNIK JE ŽE PRIJAVLJEN!!!";
                                     die();
-                                } else{
-                                    $username = "";
-                                    $match = true;
+                                } else { // Prikažemo prijavno okno
+									echo '
+									<div class="contact-form">
+										<form action="" method="POST">
+										<div>
+											<span><label>Uporabniško ime</label></span>
+											<span><input type="text" name="upIme"></span>
+										</div>
+										<div>
+											<span><label>Geslo</label></span>
+											<span><input type="password" name="geslo"></span>
+										</div>
+										<div>
+											<span><input type="submit" value="Prijavi"></span>
+										</div>
+										</form>
+									</div>';
+									if (isset($_POST['upIme'])){ // Uporabnisko ime je nastavljeno
+										$upIme = $_POST['upIme'];
+										$upIme = stripslashes($upIme);
+										$upIme = strip_tags($upIme);
+										$upIme = mysql_real_escape_string($upIme);
+										$upIme = str_replace( "`", " ", $upIme);
+								
+										$geslo = $_POST['geslo'];
+										$geslo = stripslashes($geslo);
+										$geslo = strip_tags($geslo);
+										$geslo = mysql_real_escape_string($geslo);
+										$geslo = str_replace( "[^A-Za-z0-9", " ", $geslo);
+										$geslo = md5($geslo);
+										$sql = mysql_query("SELECT * 
+															FROM uporabnik 
+															WHERE uporabnisko_ime='$upIme' 
+															AND geslo='$geslo'"); 
+									
+										$login_check = mysql_num_rows($sql);
+										
+										if($login_check > 0) { // Poizvedba vrne vrstico
+											while($row = mysql_fetch_array($sql)) { 
+                                                $_SESSION['id'] = $row["id_uporabnik"];
+                                                $_SESSION['jeAdmin'] = $row["je_admin"];
 
-
-                                    if (isset($_POST['login'])){
-                                        echo"LOGIN!!!!!!!!!";
-                                        $username = $_POST['username'];
-                                        //echo "$username";
-                                       
-                                        $sqlSelect = "SELECT * FROM uporabnik WHERE uporabnisko_ime = '$username'";
-                                        $query = mysql_query($sqlSelect);
-
-                                        if (!$query) {
-                                            echo "Could not successfully run query ($query) from DB: " . mysql_error();
-                                            exit;
-                                        }
-
-                                        // uporabnik ne obstaja
-                                        if (mysql_num_rows($query) == 0)
-                                            $match = false;
-                                        else{
-                                            $password = $_POST['password'];
-                                            $password = hash("sha512", $password);
-
-                                            // preveri uporabnikove podatke
-                                            $user = mysql_fetch_array($query);
-                                            if ($password == $user['geslo']){
-                                                // set session
-                                                $_SESSION['username'] = $username;
-                                                // isAdmin?
-                                                $isAdmin = $user['je_admin'];
-                                                $_SESSION['isAdmin'] = $isAdmin;
-                                                echo "UPORABNIK VPISAN";
-                                                // redirect to index
                                                 header("location:index.php");
-
-                                                die();
-                                            }
-                                            // don't match
-                                            else{
-                                                $match = false;
-                                            }
-
-                                        }
-                                    }
-
-                                    if (!isset($_POST['login']) || !$match){
-
-                                        echo "<form id='loginForm' name='loginForm'action='prijava.php' method='POST' class='signin'>";
-                                        echo "<fieldset class='textbox'>";
-                                        echo"<label class='username''>";
-                                        echo"<span>Uporabniško ime</span>";
-                                        echo"<input id='username' name='username' type='text' autocomplete='on' placeholder='Uporabniško ime'></label>";
-                                        echo "<label class='password'>";
-                                        echo "<span>Geslo</span>";
-                                        echo "<input id='password' name='password' value='$username'  type='password' placeholder='Geslo'>";
-                                        echo "</label>";
-                                        echo "<input type='submit' value='Vpiši me' name='login' id='btnLogin' class='submit button'>";
-                                        echo "<p>";
-                                        echo "<a class='forgot' href='#'>Ste pozabili geslo?</a>";
-                                        echo "<br/>";
-                                        echo "<a clas='forgot' href='registriraj.php'>Še nimate našega računa?</a>";
-                                        echo "</p>";
-                                        echo "</fieldset>";
-                                        echo "</form>";
-                                        /*
-                                        echo "DREK!!!!";
-                                        echo "<div id='login-box' name='loginBox' action='index.php' mathod='POST' class='login-popup'>";
-                                        echo "<a href='index.php' class='close'><img src='images/close_pop.png' class='btn_close' title='Close Window' alt='Close' /></a>";
-                                        echo "<form method='post' class='signin' action='#'>";
-                                        echo "<fieldset class='textbox'>";
-                                        echo "<label class='username'>";
-                                        echo "<span>Uporabniško ime</span>";
-                                        echo "<input id='username' name='username' type='text' autocomplete='on' placeholder='Uporabniško ime'>";
-                                        echo "</label>";
-                                        echo "<label class='password'>";
-                                        echo "<span>Geslo</span>";
-                                        echo "<input id='password' name='password'  type='password' placeholder='Geslo'>";
-                                        echo "</label>";
-                                        // echo "<button class='submit button' type='button'>Vpiši me!</button>";
-                                        echo "<input type='submit' value='Vpiši me!' name='login' id='btnLogin' class='submit button'>";
-                                        echo "<p>";
-                                        echo "<a class='forgot' href='#'>Ste pozabili geslo?</a>";
-                                        echo "<br/>";
-                                        echo "<a class='forgot' href='registriraj.ph'>Še nimate našega računa?</a>";
-                                        echo "</p>";
-                                        echo "</fieldset>";
-                                        echo "</form>";
-                                        echo "</div>";
-                                        */
-                                    }
-                                }
+												exit();
+											}
+										} else { // poizvedba je prazna
+											echo '
+											<p>
+											Uporabnik ne obstaja.
+											</p>';
+										}
+									}
+								}
                                 ?>
                             </div>
                         </div>
@@ -126,7 +85,7 @@
                 </div>
             </div>
         	<div class="clear"> </div>
-			<?php include "footer.php";?>  <!-- Footer -->
+			<?php include "footer.php"; ?>  <!-- Footer -->
         </div> <!---End-wrap--->
 	</body>
 </html>

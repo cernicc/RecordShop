@@ -15,24 +15,21 @@
                     <li><a href="najljubsi.php">Najljub&#353;i</a></li>
                 </ul>
             </div>
-            <?php
-            echo "<div class='col_1_of_4 span_1_of_4'>";
-                echo "<h3>Profil</h3>";
-                echo "<ul>";
-        
-                    if (isset($_SESSION['username'])){
-                        echo "<li><a href='vasprofil.php'>Va&#353; profil</a></li>";
-                        echo "<li><a href='urediprofil.php'>Uredi profil</a></li>";
+            <div class='col_1_of_4 span_1_of_4'>
+            	<h3>Profil</h3>
+                <ul>
+        		<?php
+                    if (isset($_SESSION['id'])){
+                        echo "<li><a href='profil.php'>Va&#353; profil</a></li>";
+                        echo "<li><a href='urediProfil.php'>Uredi profil</a></li>";
                         echo "<li><a href='odjava.php'>Odjava</a></li>";
-                    }
-        
-                    else{
+                    } else {
                         echo "<li><a href='registriraj.php'>Registracija</a></li>";
-                        echo "<li><a href='#login-box' class='login-window'>Prijava</a></li>";
+                        echo "<li><a href='prijava.php'>Prijava</a></li>";
                     }
-                echo "</ul>";
-                echo "</div>";
-            ?>
+				?>
+                </ul>
+            </div>
             <div class="col_1_of_4 span_1_of_4 footer-lastgrid">
                 <h3>Pove&#382;ite se z nami</h3>
                 <ul>
