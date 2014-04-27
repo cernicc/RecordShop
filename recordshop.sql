@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2014 at 06:38 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Apr 27, 2014 at 09:44 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.16
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `recordshop`
 --
+CREATE DATABASE IF NOT EXISTS `recordshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `recordshop`;
 
 -- --------------------------------------------------------
 
@@ -29,12 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `album` (
   `id_album` int(11) NOT NULL AUTO_INCREMENT,
   `naslov` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `leto` int(11) NOT NULL,
-  `cena` decimal(10,0) NOT NULL,
+  `cena` float NOT NULL,
   `id_izvajalec` int(11) NOT NULL,
   `id_zanr` int(11) NOT NULL,
   PRIMARY KEY (`id_album`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `album`
+--
+
+INSERT INTO `album` (`id_album`, `naslov`, `image`, `leto`, `cena`, `id_izvajalec`, `id_zanr`) VALUES
+(1, 'Bam bam', '1.jpg', 2013, 20.2, 2, 1),
+(2, 'Hit mix', '2.jpg', 2333, 15.1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -46,7 +57,15 @@ CREATE TABLE IF NOT EXISTS `izvajalec` (
   `id_izvajalec` int(11) NOT NULL AUTO_INCREMENT,
   `ime` varchar(255) NOT NULL,
   PRIMARY KEY (`id_izvajalec`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `izvajalec`
+--
+
+INSERT INTO `izvajalec` (`id_izvajalec`, `ime`) VALUES
+(1, 'Rok Cernic'),
+(2, 'Coky Mock');
 
 -- --------------------------------------------------------
 
@@ -113,7 +132,15 @@ CREATE TABLE IF NOT EXISTS `zanr` (
   `id_zanr` int(11) NOT NULL AUTO_INCREMENT,
   `ime` varchar(255) NOT NULL,
   PRIMARY KEY (`id_zanr`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `zanr`
+--
+
+INSERT INTO `zanr` (`id_zanr`, `ime`) VALUES
+(1, 'Rock'),
+(2, 'Techno');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

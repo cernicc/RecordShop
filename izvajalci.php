@@ -33,8 +33,8 @@
 							<div class="cartire-grid-cartinfo">
 								<h4>Cena!</h4>
 								<span>$502.00</span><br><br>
-								<a href="singlepage.html">Dodaj v košarico</a><br />
-								<a href="singlepage.html">Več info</a>
+								<a href="album.php">Dodaj v košarico</a><br />
+								<a href="album.php">Več info</a>
 							</div>
 							<div class="clear"> </div>
 						</div><br />
@@ -52,8 +52,8 @@
 							<div class="cartire-grid-cartinfo">
 								<h4>Cena!</h4>
 								<span>$502.00</span><br><br>
-								<a href="singlepage.html">Dodaj v košarico</a><br />
-								<a href="singlepage.html">Več info</a>
+								<a href="album.php">Dodaj v košarico</a><br />
+								<a href="album.php">Več info</a>
 							</div>
 							<div class="clear"> </div>
 						</div><br />
@@ -71,8 +71,8 @@
 							<div class="cartire-grid-cartinfo">
 								<h4>Cena!</h4>
 								<span>$502.00</span><br><br>
-								<a href="singlepage.html">Dodaj v košarico</a><br />
-								<a href="singlepage.html">Več info</a>
+								<a href="album.php">Dodaj v košarico</a><br />
+								<a href="album.php">Več info</a>
 							</div>
 							<div class="clear"> </div>
 						</div><br />
@@ -90,8 +90,8 @@
 							<div class="cartire-grid-cartinfo">
 								<h4>Cena!</h4>
 								<span>$502.00</span><br><br>
-								<a href="singlepage.html">Dodaj v košarico</a><br />
-								<a href="singlepage.html">Več info</a>
+								<a href="album.php">Dodaj v košarico</a><br />
+								<a href="album.php">Več info</a>
 							</div>
 							<div class="clear"> </div>
 						</div><br />

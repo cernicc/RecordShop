@@ -37,11 +37,11 @@ elseif($menuLinkID == "kontakt"){
 				if ($_SESSION['jeAdmin'] == 1){
                     echo "<li><a class='menu' href='admin.php'>Admin</a></li>";
                 }
+				echo "<li><a href='cart.php'>Košarica<img src='images/cart.png' title='cart' /></a></li>";
             } else {
                 echo "<li><a href='prijava.php'>Prijava</a></li>";
                 echo "<li><a href='registriraj.php'>Registracija</a></li>";
             }
-            echo "<li><a href='#'>Košarica: (Prazno) <img src='images/cart.png' title='cart' /></a></li>";
             ?>
         	</ul>
         </div>
