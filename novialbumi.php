@@ -21,7 +21,7 @@
                 		<h5><span>NOVI </span>ALBUMI</h5>
                 		<div class="section group">
                 			<?php
-        					$sql = "SELECT * FROM album";
+        					$sql = "SELECT * FROM album ORDER BY id_album DESC LIMIT 10";
         
 							$result = mysql_query($sql);
 							
@@ -44,7 +44,7 @@
 								echo '<h3>'.$row["naslov"].'</h3>';
 								echo '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>';
 								echo '<h4> $'.$row["cena"].'</h4>';
-								echo '<div class="button"><span><a href="singlepage.html">Read More</a></span></div>';
+								echo '<div class="button"><span><a href="album.php?id='.$row["id_album"].'"> Read More </a></span></div>';
 								echo '</div>';
 							
 							}
@@ -52,12 +52,6 @@
 							mysql_free_result($result);
 							
 							?>
-                  			<div class="grid_1_of_5 images_1_of_5"> <img src="images/h1.jpg">
-                    			<h3>Lorem Ipsum is simply </h3>
-                    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-                    			<h4>$512.00</h4>
-                   				<div class="button"><span><a href="singlepage.html">Read More</a></span></div>
-                  			</div>
                 		</div>
               		</div>
             	</div>
