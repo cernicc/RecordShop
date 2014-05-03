@@ -1,5 +1,5 @@
 <?php
-	include "scripts/connect_to_mysql.php";
+	include "scripts/connect_to_mysql.php";	
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -39,10 +39,20 @@
 							// Note: If you're expecting just one row, no need to use a loop
 							// Note: If you put extract($row); inside the following loop, you'll
 							//       then create $userid, $fullname, and $userstatus
+														
 							while ($row = mysql_fetch_assoc($result)) {
-								echo '<div class="grid_1_of_5 images_1_of_5"> <img src="images/h1.jpg">';
+								if (strlen($row["opis"]) > 80) {
+
+    							    $stringCut = substr($row["opis"], 0, 80);
+    								$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+								}
+								else {
+									$string = $row["opis"];
+								}
+								
+								echo '<div class="grid_1_of_5 images_1_of_5"> <img src="album_images/'.$row["image"].'">';
 								echo '<h3>'.$row["naslov"].'</h3>';
-								echo '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>';
+								echo '<p>'.$string.'</p>';
 								echo '<h4> $'.$row["cena"].'</h4>';
 								echo '<div class="button"><span><a href="album.php?id='.$row["id_album"].'"> Read More </a></span></div>';
 								echo '</div>';

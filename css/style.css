@@ -307,7 +307,8 @@ body{
 	font-size:0.8125em;
 	color: #989898;
 	line-height: 1.6em;
-	font-family : verdana, arial, helvetica, helve, sans-serif; 	
+	font-family : verdana, arial, helvetica, helve, sans-serif;
+	min-height: 80px; 	
 }
 .images_1_of_5 h4{
 	font-size: 0.8125em;
@@ -883,7 +884,7 @@ body{
 }
 /*----zoomer----*/
 .clearfix:after{clear:both;content:".";display:block;font-size:0;height:0;line-height:0;visibility:hidden;}
-		.clearfix{display:block;zoom:1}
+		.clearfix{display:block;zoom:1; padding-right: 10px}
 		
 		
 		ul#thumblist{display:block;}

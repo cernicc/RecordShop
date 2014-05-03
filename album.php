@@ -4,7 +4,7 @@ include "scripts/connect_to_mysql.php";
 if (isset($_GET['id'])) {
 	$id = preg_replace('#[^0-9]#i', '', $_GET['id']); 
 	
-	$sql = mysql_query("SELECT * FROM album WHERE id_album='$id' LIMIT 1");
+	$sql = mysql_query("SELECT naslov, image, leto, cena, (select zanr.ime from zanr where zanr.id_zanr = album.id_zanr) AS zanr, (select izvajalec.ime from izvajalec where album.id_izvajalec = izvajalec.id_izvajalec) AS izvajalec, opis FROM album WHERE id_album='$id' LIMIT 1");
 	$productCount = mysql_num_rows($sql);
     if ($productCount > 0) {
 		// Album obstaja
@@ -13,8 +13,9 @@ if (isset($_GET['id'])) {
 			 $image = $row["image"];
 			 $year = $row["leto"];
 			 $price = $row["cena"];
-			 $artist = $row["id_izvajalec"];
-			 $genre = $row["id_zanr"];
+			 $artist = $row["izvajalec"];
+			 $genre = $row["zanr"];
+			 $description = $row["opis"];
          }
 	} else {
 		echo "Album ne obstaja..";
@@ -70,6 +71,10 @@ mysql_close();
                                 <ul>
 									<li><h2>Izvajalec :</h2></li>
 									<li><h5><?php echo $artist; ?></h5></li>
+								</ul>
+                                <ul>
+									<li><h2>Opis :</h2></li>
+									<li><h5><?php echo $description; ?></h5></li>
 								</ul>
 							</div>
 							<div class="product-description">

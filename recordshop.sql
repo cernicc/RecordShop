@@ -2,10 +2,10 @@
 -- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 27, 2014 at 09:44 PM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.16
+-- Gostitelj: localhost
+-- Čas nastanka: 03. maj 2014 ob 20.07
+-- Različica strežnika: 5.6.12-log
+-- Različica PHP: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `recordshop`
+-- Zbirka podatkov: `recordshop`
 --
 CREATE DATABASE IF NOT EXISTS `recordshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `recordshop`;
@@ -25,12 +25,13 @@ USE `recordshop`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `album`
+-- Struktura tabele `album`
 --
 
 CREATE TABLE IF NOT EXISTS `album` (
   `id_album` int(11) NOT NULL AUTO_INCREMENT,
   `naslov` varchar(255) NOT NULL,
+  `opis` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `leto` int(11) NOT NULL,
   `cena` float NOT NULL,
@@ -40,17 +41,17 @@ CREATE TABLE IF NOT EXISTS `album` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `album`
+-- Odloži podatke za tabelo `album`
 --
 
-INSERT INTO `album` (`id_album`, `naslov`, `image`, `leto`, `cena`, `id_izvajalec`, `id_zanr`) VALUES
-(1, 'Bam bam', '1.jpg', 2013, 20.2, 2, 1),
-(2, 'Hit mix', '2.jpg', 2333, 15.1, 1, 2);
+INSERT INTO `album` (`id_album`, `naslov`, `opis`, `image`, `leto`, `cena`, `id_izvajalec`, `id_zanr`) VALUES
+(1, 'Bam bam', 'Bam bam na polno !', '1.jpg', 2013, 20.2, 2, 1),
+(2, 'Hit mix', 'Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix', '2.jpg', 2333, 15.1, 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `izvajalec`
+-- Struktura tabele `izvajalec`
 --
 
 CREATE TABLE IF NOT EXISTS `izvajalec` (
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `izvajalec` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `izvajalec`
+-- Odloži podatke za tabelo `izvajalec`
 --
 
 INSERT INTO `izvajalec` (`id_izvajalec`, `ime`) VALUES
@@ -70,7 +71,7 @@ INSERT INTO `izvajalec` (`id_izvajalec`, `ime`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komentar`
+-- Struktura tabele `komentar`
 --
 
 CREATE TABLE IF NOT EXISTS `komentar` (
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `komentar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nakup`
+-- Struktura tabele `nakup`
 --
 
 CREATE TABLE IF NOT EXISTS `nakup` (
@@ -100,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `nakup` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uporabnik`
+-- Struktura tabele `uporabnik`
 --
 
 CREATE TABLE IF NOT EXISTS `uporabnik` (
@@ -116,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `uporabnik` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `uporabnik`
+-- Odloži podatke za tabelo `uporabnik`
 --
 
 INSERT INTO `uporabnik` (`id_uporabnik`, `uporabnisko_ime`, `geslo`, `ime`, `priimek`, `email`, `naslov`, `je_admin`) VALUES
@@ -125,7 +126,7 @@ INSERT INTO `uporabnik` (`id_uporabnik`, `uporabnisko_ime`, `geslo`, `ime`, `pri
 -- --------------------------------------------------------
 
 --
--- Table structure for table `zanr`
+-- Struktura tabele `zanr`
 --
 
 CREATE TABLE IF NOT EXISTS `zanr` (
@@ -135,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `zanr` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `zanr`
+-- Odloži podatke za tabelo `zanr`
 --
 
 INSERT INTO `zanr` (`id_zanr`, `ime`) VALUES
