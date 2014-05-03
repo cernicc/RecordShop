@@ -94,7 +94,7 @@
 										$username = $_POST['username'];
 										$email = $_POST['email'];
 										$password = $_POST['password'];
-										$password = hash('sha512', $password);
+										$password = hash('md5', $password);
 										$name = $_POST['name'];
 										$surname = $_POST['surname'];
 
