@@ -40,7 +40,7 @@
 								  }
 								$userExists = false;
 
-								if (isset($_POST['register'])){
+								if (isset($_POST['register'])  ){
 																
 									$dbname = 'recordshop'; 
 									$dbuser     = 'root'; 
@@ -90,7 +90,7 @@
 										$userExists = true;
 									}
 									*/
-									else{ 
+
 										$username = $_POST['username'];
 										$email = $_POST['email'];
 										$password = $_POST['password'];
@@ -99,13 +99,14 @@
 										$surname = $_POST['surname'];
 
 
-                                        if($username =="" || $email =="" || $password =="" || $name =="" || $surname =="" ){
+
+                                        if(trim($username, " ") =="" || trim($email) =="" || $password==hash('md5',"") || trim($name) =="" || trim($surname) =="" || $userExists){
                                             echo "<h3>Registracija uporabnika</h3>";
                                             echo "<form id='registerForm' name='registerForm' action='registriraj.php' method='POST'>";
                                             echo "<div>";
                                             echo "<span><label>IME</label></span>";
 
-                                            if($name==""){
+                                            if(trim($name)==""){
                                                 echo "<span><input type='text' name='name' id='txtName'><span>";
                                                 echo "<p1>* vpišite ime!</p1>";
                                             }
@@ -117,7 +118,7 @@
                                             echo "<div>";
                                             echo "<span><label>PRIIMEK</label></span>";
 
-                                            if($surname==""){
+                                            if(trim($surname)==""){
                                                 echo "<span><input type='text' name='surname' id='txtSurname'></span>";
                                                 echo "<p1>* vpišite priimek!</p1>";
                                             }
@@ -129,10 +130,11 @@
                                             echo "<span><label>UPORABNIŠKO IME</label></span>";
 
                                             if($userExists){
+                                                echo "<span><input type='text' name='username' id='txtUsername' value='$username'></span>";
                                                 echo "<p1>* uporabnik že obstaja!</p1>";
                                                 echo "</br>";
                                             }
-                                            if($username==""){
+                                            else if(trim($username)==""){
                                                 echo "<span><input type='text' name='username' id='txtUsername'></span>";
                                                 echo "<p1>* vpišite uporabniško ime!</p1>";
                                             }
@@ -145,7 +147,7 @@
 
 
                                             echo "<span><input type='password' name='password' id='txtPassword'></span>";
-                                            if($password==""){
+                                            if(hash('md5', $password)==""){
                                                 echo "<p1>* vpišite geslo!</p1>";
                                             }
 
@@ -164,12 +166,10 @@
                                             echo "</div>";
                                             echo "<div>";
                                             echo "<input type='submit' value='Registriraj' name='register' id='btnRegister' >";
-
                                             echo "</br>";
                                             echo "<p1>Opomba: za uspešno registracijo morajo biti izpolnjena vsa navedena polja</p1>";
                                             echo "</div>";
                                             echo "</form>";
-
                                         }
 
                                         else{
@@ -187,7 +187,7 @@
                                             echo "Čez par sekund boste preusmerjeni na stran za prijavo!";
                                             header("refresh:5; url=index.php");
                                         }
-									}
+
 								}
 								if (!isset($_POST['register'])){
 									echo "<h3>Registracija uporabnika</h3>";
