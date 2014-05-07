@@ -2,10 +2,17 @@
 -- version 4.0.4
 -- http://www.phpmyadmin.net
 --
+<<<<<<< HEAD
+-- Host: localhost
+-- Generation Time: May 07, 2014 at 10:09 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.3.13
+=======
 -- Gostitelj: localhost
 -- Čas nastanka: 03. maj 2014 ob 20.07
 -- Različica strežnika: 5.6.12-log
 -- Različica PHP: 5.4.12
+>>>>>>> d2ae9af08cc66e5f2eb7bc8cbcf1927c333d58db
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +24,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
+<<<<<<< HEAD
+-- Database: `recordshop`
+--
+=======
 -- Zbirka podatkov: `recordshop`
 --
 CREATE DATABASE IF NOT EXISTS `recordshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `recordshop`;
+>>>>>>> d2ae9af08cc66e5f2eb7bc8cbcf1927c333d58db
 
 -- --------------------------------------------------------
 
@@ -46,7 +58,22 @@ CREATE TABLE IF NOT EXISTS `album` (
 
 INSERT INTO `album` (`id_album`, `naslov`, `opis`, `image`, `leto`, `cena`, `id_izvajalec`, `id_zanr`) VALUES
 (1, 'Bam bam', 'Bam bam na polno !', '1.jpg', 2013, 20.2, 2, 1),
+<<<<<<< HEAD
+(2, 'Hit mix', 'Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix', '2.jpg', 2333, 15.1, 1, 2),
+(3, 'Joy Of Motion', 'Progressive metal', 'Animals As Leaders - Joy Of Motion-jpg', 2014, 17, 6, 4),
+(4, 'Khaos Legions', 'Melodic Death Metal', 'Arch Enemy - Khaos Legions.jpg', 2011, 15, 10, 5),
+(5, 'L''enfant Sauvage', 'Progressive french metal', 'Gojira - L''enfant Sauvage.jpg', 2012, 16, 9, 4),
+(6, 'Haunted Shores', 'High tech prog riffage', 'Haunted Shores - Haunted Shores.jpg', 2011, 14, 5, 4),
+(7, 'The Space Within', 'Canadian masterpiece', 'Intervals - The Space Within.jpg', 2011, 15, 4, 4),
+(8, 'The Number Of The Beast', 'New wave of british metal', 'Iron Maiden - The Number Of The Beast.jpg', 1982, 15, 24, 8),
+(9, 'Abigail', 'Horror scenes', 'King Diamond - Abigail.jpeg', 1987, 16, 23, 8),
+(10, 'Periphery', 'Bulb action', 'Periphery - Periphery.jpg', 2010, 17, 3, 4),
+(11, 'Volition', 'Freaking pilots', 'Protest The Hero - Volition.jpg', 2013, 16, 8, 4),
+(12, 'Altered state', 'Ambientish prog', 'Tesseract - Altered State.jpg', 2013, 17, 7, 4),
+(13, 'Dark Roots Of The Earth', 'American thrash carnage', 'Testament - Dark Roots Of The Earth.jpg', 2012, 17, 13, 7);
+=======
 (2, 'Hit mix', 'Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix Mix', '2.jpg', 2333, 15.1, 1, 2);
+>>>>>>> d2ae9af08cc66e5f2eb7bc8cbcf1927c333d58db
 
 -- --------------------------------------------------------
 
@@ -141,7 +168,16 @@ CREATE TABLE IF NOT EXISTS `zanr` (
 
 INSERT INTO `zanr` (`id_zanr`, `ime`) VALUES
 (1, 'Rock'),
+<<<<<<< HEAD
+(2, 'Techno'),
+(3, 'Death Metal'),
+(4, 'Progressive Metal'),
+(5, 'Melodic Death Metal'),
+(7, 'Thrash Metal'),
+(8, 'Heavy Metal');
+=======
 (2, 'Techno');
+>>>>>>> d2ae9af08cc66e5f2eb7bc8cbcf1927c333d58db
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
