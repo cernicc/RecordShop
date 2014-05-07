@@ -75,10 +75,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
     $cartOutput = "<h2 align='center'>Košarica je prazna</h2>";
 } else {
 	// Start PayPal Checkout Button
-	$pp_checkout_btn .= '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" name="cmd" value="_cart">
-    <input type="hidden" name="upload" value="1">
-    <input type="hidden" name="business" value="you@youremail.com">';
+	$pp_checkout_btn .= '<form action="scripts/buy.php" method="post">';
 	// Start the For Each loop
 	$i = 0; 
     foreach ($_SESSION["cart_array"] as $each_item) { 
@@ -114,14 +111,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 	$cartTotal = "<div style='font-size:18px; margin-top:12px;' align='right'>Cena vozička : ".$cartTotal." €</div>";
     // Finish the Paypal Checkout Btn
 	$pp_checkout_btn .= '<input type="hidden" name="custom" value="' . $product_id_array . '">
-	<input type="hidden" name="notify_url" value="https://www.yoursite.com/storescripts/my_ipn.php">
-	<input type="hidden" name="return" value="https://www.yoursite.com/checkout_complete.php">
-	<input type="hidden" name="rm" value="2">
-	<input type="hidden" name="cbt" value="Return to The Store">
-	<input type="hidden" name="cancel_return" value="https://www.yoursite.com/paypal_cancel.php">
-	<input type="hidden" name="lc" value="US">
-	<input type="hidden" name="currency_code" value="USD">
-	<input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - its fast, free and secure!">
+	<input type="image" width="20%" src="images/kupi.png" name="submit" alt="Kupi!">
 	</form>';
 }
 ?>
