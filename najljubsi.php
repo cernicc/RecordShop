@@ -39,8 +39,11 @@
 							// Note: If you're expecting just one row, no need to use a loop
 							// Note: If you put extract($row); inside the following loop, you'll
 							//       then create $userid, $fullname, and $userstatus
-
+                            $i = 0;
 							while ($row = mysql_fetch_assoc($result)) {
+                                if($i==0){
+                                    echo('<p>'."     ".'</p>');
+                                }
 								if (strlen($row["opis"]) > 80) {
     							    $stringCut = substr($row["opis"], 0, 80);
     								$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
@@ -55,7 +58,7 @@
 								echo '<h4> $'.$row["cena"].'</h4>';
 								echo '<div class="button"><span><a href="album.php?id='.$row["id_album"].'"> Read More </a></span></div>';
 								echo '</div>';
-							
+							    $i++;
 							}
 							
 							mysql_free_result($result);
