@@ -25,7 +25,6 @@ $userID = $_SESSION['id'];
 $sql = mysql_query("INSERT INTO nakup (datum, cas, id_album_array, id_uporabnik) 
    VALUES(CURDATE(),CURTIME(),'$custom','$userID')") or die ("unable to execute the query");
 
-echo 'Nakup je bil uspešen... Preusmeri';
-
+header("Location: ../cart.php?cmd=succes");
 mysql_close();
 ?>

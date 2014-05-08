@@ -37,18 +37,18 @@
                         <div class="col span_2_of_3">
                         	<div class="contact-form">
                             	<h3>Kontaktirajte nas:</h3>
-                                <form>
+                                <form action="mailto:info@example.com" enctype="text/plain" method="post">
                                 	<div>
                                         <span><label>IME</label></span>
-                                        <span><input type="text" value=""></span>
+                                        <span><input type="text" value="" name="Ime"></span>
                                     </div>
                                     <div>
                                         <span><label>E-MAIL</label></span>
-                                        <span><input type="text" value=""></span>
+                                        <span><input type="text" value="" name="Email"></span>
                                     </div>
                                     <div>
                                         <span><label>MOBITEL</label></span>
-                                        <span><input type="text" value=""></span>
+                                        <span><input type="text" value="" name="Mobitel"></span>
                                     </div>
                                     <div>
                                         <span><label>ZADEVA</label></span>

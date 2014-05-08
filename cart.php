@@ -1,5 +1,6 @@
 <?php
 include "scripts/connect_to_mysql.php";
+$error = '';
 
 // Uporabnik poskuša dodati album v košarico
 if (isset($_POST['pid'])) {
@@ -64,6 +65,10 @@ if (isset($_POST['index_to_remove']) && $_POST['index_to_remove'] != "") {
 		unset($_SESSION["cart_array"]["$key_to_remove"]);
 		sort($_SESSION["cart_array"]);
 	}
+}
+
+if (isset($_GET['cmd']) && $_GET['cmd'] == "succes") {
+	$error = 'Uspešno naročeno';
 }
 
 // Sestavi košarico za uporabnika
@@ -154,7 +159,8 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
                             <br />
                             <br />
                             <a href="cart.php?cmd=emptycart">Izprazni vsebino vozička</a>
-                            </div>
+                        <h3><?php echo $error; ?></h3>
+                        </div>
 					</div>
 				</div>
 			</div>
