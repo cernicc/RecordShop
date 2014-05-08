@@ -625,7 +625,7 @@ body{
 .cartire-grid-cartinfo  ul li{
     display:inline-block;
 }
-.cartire-grid-cartinfo a{
+.cartire-grid-cartinfo a, input{
     padding: 8px 10px;
     display: inline-block;
     background: url(../images/head1.png)repeat-x;
@@ -639,6 +639,9 @@ body{
     -webkit-transition: background 0.5s ease;
     margin-bottom: 10px;
 }
+
+
+
 .cartire-grid-cartinfo a:hover{
     background: url(../images/head1h.png)repeat-x;
     text-decoration: none !important;

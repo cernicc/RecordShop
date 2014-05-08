@@ -1,6 +1,8 @@
 <?php
-include "scripts/connect_to_mysql.php";
+    include "scripts/connect_to_mysql.php";
+
 ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,7 +23,7 @@ include "scripts/connect_to_mysql.php";
             <div class="cartires-grids">
 
                 <?php
-                    $sql = "SELECT izvajalec.id_izvajalec, izvajalec.ime, album.opis, album.cena, album.image, album.id_izvajalec, album.naslov
+                    $sql = "SELECT izvajalec.id_izvajalec, izvajalec.ime, album.opis, album.cena, album.image, album.id_izvajalec, album.id_album, album.naslov
                             FROM izvajalec
                             INNER JOIN album
                             ON izvajalec.id_izvajalec=album.id_izvajalec
@@ -56,8 +58,21 @@ include "scripts/connect_to_mysql.php";
                         echo '<div class="cartire-grid-cartinfo">';
                             echo '<h4>Cena!</h4>';
                             echo '<span>'.$row["cena"].' €'.'</span><br><br>';
-                            echo '<a href="album.php">Dodaj v košarico</a><br />';
-                            echo '<a href="album.php">Več info</a>';
+
+                            echo '<a href="album.php?id='.$row["id_album"].'">Več info</a>';
+
+                            if (isset($_SESSION['id'])){
+                                echo '<form id="form1" name="form1" method="post" action="cart.php">';
+                                echo '<input type="hidden" name="pid" id="pid" value='. $row["id_album"] .' />';
+                                //echo '<a href="album.php">Dodaj v košarico</a><br />';
+                                echo '<input type="submit" name="button" id="button" value="Dodaj v košarico" />';
+                                echo '</form>';
+                            }
+
+                            else {
+                                echo '<br /> <br />';
+                                echo '<p>Za naročilo albuma se je potrebno prijaviti!</p>';
+                            }
                         echo '</div>';
                         echo '<div class="clear"> </div>';
                         echo '</div><br/>';
