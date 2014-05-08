@@ -39,6 +39,7 @@
 							// Note: If you're expecting just one row, no need to use a loop
 							// Note: If you put extract($row); inside the following loop, you'll
 							//       then create $userid, $fullname, and $userstatus
+
 							while ($row = mysql_fetch_assoc($result)) {
 								if (strlen($row["opis"]) > 80) {
     							    $stringCut = substr($row["opis"], 0, 80);

@@ -291,6 +291,7 @@ body{
     text-decoration:line-through;
 }
 .images_1_of_5  img{
+    height: 200px;
     max-width:100%;
     display:block;
     margin: 0 auto;
@@ -310,6 +311,7 @@ body{
     line-height: 1.6em;
     font-family : verdana, arial, helvetica, helve, sans-serif;
     min-height: 80px;
+
 }
 .images_1_of_5 h4{
     font-size: 0.8125em;
