@@ -20,79 +20,48 @@
 					<div class="products">
 						<h5><span>Naša</span> ponudba</h5>
 						<div class="section group">
-							<div class="grid_1_of_5 images_1_of_5">
-								 <img src="images/a4.jpg">
-								 <h3>Lorem Ipsum is simply </h3>
-								 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								 <h4><label>$700.00</label>$512.00</h4>
-							     <div class="button"><span><a href="album.php">Preberi več</a></span></div>
-						   </div>
-							<div class="grid_1_of_5 images_1_of_5">
-								 <img src="images/a5.jpg">
-								 <h3>Lorem Ipsum is simply </h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								<h4><label>$700.00</label>$300.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-						    </div>
-							<div class="grid_1_of_5 images_1_of_5">
-								<img src="images/a6.jpg">
-								 <h3>Lorem Ipsum is simply </h3>
-								 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								 <h4><label>$700.00</label>$120.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-							</div>
-							<div class="grid_1_of_5 images_1_of_5">
-								 <img src="images/a7.jpg">
-								 <h3>Lorem Ipsum is simply </h3>
-								 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								 <h4><label>$700.00</label>$500.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-							</div>
-							<div class="grid_1_of_5 images_1_of_5">
-								 <img src="images/a8.jpg">
-								 <h3>Lorem Ipsum is simply</h3>
-								 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								 <h4><label>$600.00</label>$120.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-							</div>
-						</div>
-						<div class="section group">
-							<div class="grid_1_of_5 images_1_of_5">
-								 <img src="images/a9.jpg">
-								 <h3>Lorem Ipsum is simply </h3>
-								 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								 <h4><span>$600.00</span>$512.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-						   </div>
-							<div class="grid_1_of_5 images_1_of_5">
-								 <img src="images/a10.jpg">
-								 <h3>Lorem Ipsum is simply </h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								 <h4><span>$400.00</span>$352.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-						    </div>
-							<div class="grid_1_of_5 images_1_of_5">
-								<img src="images/a11.jpg">
-								 <h3>Lorem Ipsum is simply </h3>
-								 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								  <h4><span>$300.00</span>$202.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-							</div>
-							<div class="grid_1_of_5 images_1_of_5">
-								 <img src="images/a12.jpg">
-								 <h3>Lorem Ipsum is simply </h3>
-								 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								 <h4><span>$400.00</span>$322.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-							</div>
-							<div class="grid_1_of_5 images_1_of_5">
-								 <img src="images/a1.jpg">
-								 <h3>Lorem Ipsum is simply</h3>
-								 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-								 <h4><span>$700.00</span>$602.00</h4>
-							     <div class="button"><span><a href="album.php">Read More</a></span></div>
-							</div>
-							<a class="button1" href="#">Poglej vse</a>
+							<?php
+        					$sql = "SELECT * FROM album";
+        
+							$result = mysql_query($sql);
+							
+							if (!$result) {
+								echo "Could not successfully run query ($sql) from DB: " . mysql_error();
+								exit;
+							}
+							
+							if (mysql_num_rows($result) == 0) {
+								echo "No rows found, nothing to print so am exiting";
+								exit;
+							}
+							
+							// While a row of data exists, put that row in $row as an associative array
+							// Note: If you're expecting just one row, no need to use a loop
+							// Note: If you put extract($row); inside the following loop, you'll
+							//       then create $userid, $fullname, and $userstatus
+														
+							while ($row = mysql_fetch_assoc($result)) {
+								if (strlen($row["opis"]) > 80) {
+
+    							    $stringCut = substr($row["opis"], 0, 80);
+    								$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+								}
+								else {
+									$string = $row["opis"];
+								}
+								
+								echo '<div class="grid_1_of_5 images_1_of_5"> <img src="album_images/'.$row["image"].'">';
+								echo '<h3>'.$row["naslov"].'</h3>';
+								echo '<p>'.$string.'</p>';
+								echo '<h4> $'.$row["cena"].'</h4>';
+								echo '<div class="button"><span><a href="album.php?id='.$row["id_album"].'"> Read More </a></span></div>';
+								echo '</div>';
+							
+							}
+							
+							mysql_free_result($result);
+							
+							?>
 						<div class="clear"> </div>
 						</div>
 					</div>
