@@ -22,7 +22,7 @@
 						<div class="section group">
 							<?php
         					$sql = "SELECT * FROM album ORDER BY id_album DESC LIMIT 10";
-        
+
 							$result = mysql_query($sql);
 							
 							if (!$result) {
@@ -41,14 +41,13 @@
 							//       then create $userid, $fullname, and $userstatus
 							while ($row = mysql_fetch_assoc($result)) {
 								if (strlen($row["opis"]) > 80) {
-
     							    $stringCut = substr($row["opis"], 0, 80);
     								$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
 								}
 								else {
 									$string = $row["opis"];
 								}
-								
+
 								echo '<div class="grid_1_of_5 images_1_of_5"> <img src="album_images/'.$row["image"].'">';
 								echo '<h3>'.$row["naslov"].'</h3>';
 								echo '<p>'.$string.'</p>';
@@ -61,7 +60,7 @@
 							mysql_free_result($result);
 							
 							?>
-							
+
 						</div>
 					</div>
 				</div>
