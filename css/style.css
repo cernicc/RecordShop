@@ -575,6 +575,16 @@ body{
     text-transform: uppercase;
     font-weight: bold;
 }
+
+.cartire-grid-info h4{
+    display: block;
+    padding: 3px 0px;
+    font: bold 18px/30px Arial, Helvetica, sans-serif;
+    color:#000;
+    border-right: 1px solid rgba(151, 151, 151, 0.11);
+    text-transform: uppercase;
+    font-weight: lighter;
+}
 .cartire-grid-info h3{
     color:#000;
 }
@@ -592,7 +602,7 @@ body{
 .cartire-grid-cartinfo{
     width:18%;
     float:left;
-    padding-left:2%;
+    padding-left:1%;
 }
 .cartire-grid-cartinfo h4{
     display: block;
@@ -603,6 +613,8 @@ body{
     text-transform: uppercase;
     font-weight: bold;
 }
+
+
 .cartire-grid-cartinfo span{
     font-size: 0.8125em;
     color: #000;
