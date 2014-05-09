@@ -78,15 +78,25 @@ mysql_close();
 								</ul>
 							</div>
 							<div class="product-description">
+                            <form method="post">
+                            	<form name="id" type="hidden" value= "<?php echo $id?>">
+                            </form>
                             	<?php
                             		if (isset($_SESSION['id'])){
 										echo '<form id="form1" name="form1" method="post" action="cart.php">';
                                 		echo '<input type="hidden" name="pid" id="pid" value='. $id .' />';
                                     	echo '<input type="submit" name="button" id="button" value="Dodaj v košarico" />';
                                 		echo '</form>';
-									} else {
+										if ($_SESSION['jeAdmin'] == 1){
+											echo '<div class="button"><span><a href="editALbum.php?id='.$id.'"> Uredi </a></span></div>';
+										}
+									}
+									
+									else {
 										echo '<p>Prosim prijavite se za naročilo</p>';
 									}
+									
+									
 								?>
 								
 							</div>

@@ -1,5 +1,6 @@
 <?php 
 include "scripts/connect_to_mysql.php"; 
+include "scripts/check_if_admin.php";
 
 if (isset($_GET['id'])) {
 	$id = preg_replace('#[^0-9]#i', '', $_GET['id']); 
