@@ -60,7 +60,19 @@
 								echo '<h3>'.$row["naslov"].'</h3>';
 								echo '<p>'.$string.'</p>';
 								echo '<h4> $'.$row["cena"].'</h4>';
-								echo '<div class="button"><span><a href="album.php?id='.$row["id_album"].'"> Read More </a></span></div>';
+
+                                if (isset($_SESSION['id'])){
+                                    echo '<form id="form1" name="form1" method="post" action="cart.php">';
+                                    echo '<input type="submit" name="button" id="button"  value="Dodaj v košarico" />';
+                                    echo '<input type="hidden" name="pid" id="pid" value='. $row["id_album"] .' />';
+
+                                    //echo '<ul><li><a type="submit" href="cart.php"><img src="images/cart.png" style="height: 15px"  title="cart"/></a></li></ul>';
+
+                                    echo '</form>';
+                                }
+                                echo '<div class="button"><span><a href="album.php?id='.$row["id_album"].'"> Prikaži več </a></span></div>';
+
+
 								echo '</div>';
 							    $i++;
 							}

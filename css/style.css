@@ -323,11 +323,11 @@ body{
 .images_1_of_5:hover{
     border: 1px solid #FC3019;
 }
-.images_1_of_5 .button{
+.images_1_of_5 .button {
     margin-top:.3em;
     line-height:1.9em;
 }
-.images_1_of_5 .button a{
+.images_1_of_5 .button a {
     padding: 8px 10px;
     display: block;
     background: url(../images/head1.png) repeat-x;
@@ -726,6 +726,7 @@ body{
     font-family :verdana, arial, helvetica, helve, sans-serif;
 }
 .contact-form input[type="text"],.contact-form textarea, input[type="email"], input[type="password"]{
+    text-align: left;
     padding:8px;
     display:block;
     width:35%;

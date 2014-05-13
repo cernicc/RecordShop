@@ -12,10 +12,6 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 
-
-
-
-
 	</head>
 	<body>
 		<div class="wrap"> <!---start-wrap--->
@@ -29,7 +25,6 @@
                                 $username = "";
                                 $email = "";
                                 $password = "";
-
                                 $name = "";
                                 $surname = "";
 								// if already logged in redirect to index
