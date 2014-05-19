@@ -6,7 +6,8 @@ if(!isset($_SESSION['id'])) {
 	
 } else {
 	if ($_SESSION['jeAdmin'] != 1){
-    	
+    	header("location:index.php");
+		die();
     }
 }
 ?>
