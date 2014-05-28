@@ -67,25 +67,6 @@
 										$userExists = true;
 									}
 
-									
-									
-									/*
-									// connect to db
-									$dbConn = mysqli_connect("localhost");
-									$dbConn->select_db("recordshop.sql");
-									// čćšž
-											mysqli_query($dbConn, "SET NAMES 'utf8' COLLATE 'utf8_slovenian_ci';");
-											mysqli_query($dbConn, "SET CHARACTER SET 'utf8_slovenian_ci';");	
-									echo "DREK";
-									
-									$username = $_POST['username'];
-									$sqlSelect = "SELECT * FROM uporabnik WHERE uporabnisko_ime = '$username'";
-									$query = mysqli_query($dbConn, $sqlSelect);
-									if (mysqli_num_rows($query) > 0){
-										$userExists = true;
-									}
-									*/
-
 										$username = $_POST['username'];
 										$email = $_POST['email'];
 										$password = $_POST['password'];
@@ -216,60 +197,6 @@
 										   echo "</div>";
 										echo "</form>";
 								}
-                                /*
-                                else{
-                                    echo "<h3>Registracija uporabnika</h3>";
-                                    echo "<form id='registerForm' name='registerForm' action='registriraj.php' method='POST'>";
-                                    echo "<div>";
-                                    echo "<span><label>IME</label></span>";
-                                    echo "<span><input type='text' name='name' id='txtName'><span>";
-                                    if($name==""){
-                                        echo "<p1>* vpišite ime!</p1>";
-                                    }
-
-                                    echo "</div>";
-                                    echo "<div>";
-                                    echo "<span><label>PRIIMEK</label></span>";
-                                    echo "<span><input type='text' name='surname' id='txtSurname'></span>";
-                                    if($surname==""){
-                                        echo "<p1>* vpišite priimek!</p1>";
-                                    }
-                                    echo "</div>";
-                                    echo "<div>";
-                                    echo "<span><label>UPORABNIŠKO IME</label></span>";
-                                    echo "<span><input type='text' name='username' id='txtUsername'></span>";
-                                    if($userExists){
-                                        echo "<p1>* uporabnik že obstaja!</p1>";
-                                        echo "</br>";
-                                    }
-                                    if($username==""){
-
-                                        echo "<p1>* vpišite uporabniško ime!</p1>";
-                                    }
-                                    echo "</div>";
-                                    echo "<div>";
-                                    echo "<span><label>GESLO</label></span>";
-                                    echo "<span><input type='password' name='password' id='txtPassword'></span>";
-                                    if($password==""){
-                                        echo "<p1>* vpišite geslo!</p1>";
-                                    }
-                                    echo "</div>";
-                                    echo "<div>";
-                                    echo "<span><label>EMAIL NASLOV</label></span>";
-                                    echo "<span><input type='email' name='email' id='txtEmail'></span>";
-                                    if($email==""){
-                                        echo "<p1>* vpišite e-poštni naslov!</p1>";
-                                    }
-                                    echo "</div>";
-                                    echo "<div>";
-                                    echo "<input type='submit' value='Registriraj' name='register' id='btnRegister' >";
-
-                                    echo "</br>";
-                                    echo "<p1>Opomba: za uspešno registracijo morajo biti izpolnjena vsa navedena polja</p1>";
-                                    echo "</div>";
-                                    echo "</form>";
-                                }
-                                */
 							?>
 				    		</div>
   						</div>				

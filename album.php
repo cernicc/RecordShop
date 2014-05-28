@@ -2,7 +2,11 @@
 include "scripts/connect_to_mysql.php"; 
 
 if (isset($_GET['id'])) {
-	$id = preg_replace('#[^0-9]#i', '', $_GET['id']); 
+	$id = $_GET['id'];
+	$id = stripslashes($id);
+	$id = strip_tags($id);
+	$id = mysql_real_escape_string($id);
+	$id = str_replace( "[^A-Za-z0-9", " ", $id);
 	
 	$sql = mysql_query("SELECT naslov, image, leto, cena, (select zanr.ime from zanr where zanr.id_zanr = album.id_zanr) AS zanr, (select izvajalec.ime from izvajalec where album.id_izvajalec = izvajalec.id_izvajalec) AS izvajalec, opis FROM album WHERE id_album='$id' LIMIT 1");
 	$productCount = mysql_num_rows($sql);

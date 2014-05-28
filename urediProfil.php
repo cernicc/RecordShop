@@ -1,8 +1,8 @@
 <?php
 include_once "scripts/connect_to_mysql.php";
-//include_once "scripts/check_if_logged_in.php";
+include_once "scripts/check_if_logged_in.php";
 
-$id = 1; //$_SESSION['id'];
+$id = $_SESSION['id'];
 $error = "";
 	
 $sql = "SELECT *
