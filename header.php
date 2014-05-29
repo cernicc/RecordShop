@@ -34,9 +34,7 @@ elseif($menuLinkID == "kontakt"){
             if (isset($_SESSION['id'])){
                 echo "<li><a href='odjava.php'>Odjava</a></li>";
                 echo "<li><a href='profil.php'>Profil</a></li>";
-				if ($_SESSION['jeAdmin'] == 1){
-                    echo "<li><a class='menu' href='admin.php'>Admin</a></li>";
-                }
+				
 				echo "<li><a href='cart.php'>Košarica<img src='images/cart.png' title='cart' /></a></li>";
             } else {
                 echo "<li><a href='prijava.php'>Prijava</a></li>";

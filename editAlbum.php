@@ -72,7 +72,11 @@ if (isset($_GET['id'])) {
                                 <ul>
 								<li><h2>Cena :</h2></li>
 									<li><h5><input name="price" type="text" value= "<?php echo $price?>"></h5></li>
+									
 								</ul>
+								<ul>
+                                <br>
+                                </ul>
                                 
                                 <ul>
                                 <br>
@@ -81,6 +85,9 @@ if (isset($_GET['id'])) {
 								  <li><h2>Leto izdaje albuma :</h2></li>
 									<li><h5><input name="year" type="text" value= "<?php echo $year?>"></h5></li>
 								</ul>
+								<ul>
+                                <br>
+                                </ul>
                                  <ul>
                                 <br>
                                 </ul>

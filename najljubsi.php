@@ -22,15 +22,23 @@
 						<div class="section group">
 							<?php
         					$sql = "SELECT * FROM album ORDER BY id_album DESC LIMIT 10";
+							
+							$sql1 = "SELECT izvajalec.id_izvajalec, izvajalec.ime, album.opis, album.cena, album.image, album.id_izvajalec, album.id_album, album.naslov
+                            FROM izvajalec
+                            INNER JOIN album
+                            ON izvajalec.id_izvajalec=album.id_izvajalec
+                            ORDER BY izvajalec.ime
+                            LIMIT 10;";
 
 							$result = mysql_query($sql);
+							$result1 = mysql_query($sql1);
 							
-							if (!$result) {
+							if (!$result1) {
 								echo "Could not successfully run query ($sql) from DB: " . mysql_error();
 								exit;
 							}
 							
-							if (mysql_num_rows($result) == 0) {
+							if (mysql_num_rows($result1) == 0) {
 								echo "No rows found, nothing to print so am exiting";
 								exit;
 							}
@@ -40,7 +48,7 @@
 							// Note: If you put extract($row); inside the following loop, you'll
 							//       then create $userid, $fullname, and $userstatus
                             $i = 0;
-							while ($row = mysql_fetch_assoc($result)) {
+							while ($row = mysql_fetch_assoc($result1)) {
                                 if($i==0){
                                     echo('<p>'."     ".'</p>');
                                 }
@@ -53,6 +61,7 @@
 								}
 
 								echo '<div class="grid_1_of_5 images_1_of_5"> <img src="album_images/'.$row["image"].'">';
+								echo '<h3>'.$row["ime"].'</h3>';
 								echo '<h3>'.$row["naslov"].'</h3>';
 								echo '<p>'.$string.'</p>';
 								echo '<h4> $'.$row["cena"].'</h4>';
@@ -70,7 +79,7 @@
 							    $i++;
 							}
 							
-							mysql_free_result($result);
+							mysql_free_result($result1);
 							
 							?>
 
